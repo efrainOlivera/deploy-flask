@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>registration_login</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='regi.css')}}">	
+		
+	</head>
+	<body>
+
+		{% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+    	{% if messages %}                            <!-- check if there are any messages -->
+        {% for message in messages %}            <!-- loop through the messages -->
+        <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+        {% endfor %}
+    	{% endif %}
+		{% endwith %}
+
+		<section class="registration"> <h1>Registration</h1> <form action="/"
+		method="post">
+			
+				First name:<br>
+				<input type="text" name="fname" value="{{session['username']}}">
+				<br>
+				Last name:<br>
+ 				<input type="text" name="lname" value="{{session['userlastname']}}">
+ 				<br>
+ 				Email:<br>
+				<input type="email" name="email" value="{{session['useremail']}}">
+				<br>
+				Password:<br>
+				<input type="password" name="password">
+				<br>
+				Password confirmation:<br>
+				<input type="password" name="passwordconfi">
+				<br>
+				<!-- Submit button -->
+				<br>
+				<input type="submit" name="submit">
+				<br>
+			</form>
+		</section>
+
+		<section class="login">
+			<h1>Login</h1>
+			<form action="/login" method="post">
+
+				<p>Email: <input class="one" type="email" name="email"></p>
+
+				<p>Password: <input type="password" name="password"></p>
+
+				<input type="submit" name="login" value="login">
+
+			</form>
+		</section>
+
+	</body>
+</html>

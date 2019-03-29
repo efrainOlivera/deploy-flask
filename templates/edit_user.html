@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>edit_user</title>
+	</head>
+	<body>
+		<h1>Edit user</h1>
+
+		<form action="/edit" method="post">
+				First name:<br>
+				<input type="text" name="fname" value="{{ session['showname'] }}">
+				<br>
+				Last name:<br>
+ 				<input type="text" name="lname" value="{{ session['showlastname'] }}">
+ 				<br>
+ 				Email:<br>
+				<input type="email" name="email" value="{{session['showemail']}}">
+				<br>
+				<br>
+				<input type="submit" name="submit">
+				<br>
+		</form>
+
+	</body>
+</html>

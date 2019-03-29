@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>home</title>
+	</head>
+	<body>
+		{% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+    	{% if messages %}                            <!-- check if there are any messages -->
+        {% for message in messages %}            <!-- loop through the messages -->
+        <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+        {% endfor %}
+    	{% endif %}
+		{% endwith %}
+		<h1>WELCOME!</h1>
+		<h3>{{ session["showname"] }}</h3>
+		<h2>Messages from friends</h2>
+		{% if messages_display %}
+
+		{% for messages in messages_display %}
+		<form action="/delete_messages/{{ messages['id'] }}" method="post">
+			Message from: {{ messages["first_name"]}}
+			<p>
+				{{ messages["messages"] }} 
+				<input type="submit" name="delete" value="delete">
+			</p>
+		</form>
+		{% endfor %}
+		{% endif %}
+		<h2>Send messages</h2>
+		{% for names in displaynombres %}
+			<p> {{ names["first_name"] }} 
+			</p>	
+				<form action="/send_message/{{ names['id'] }}" method="post">
+					<input type="text" name="message_created"> 
+					<input type="submit" name="send" value="send">
+				</form>	
+		{% endfor %}
+		<a href="/logout">log out</a>
+		<a href="/edit">Edit user</a>
+
+	</body>
+</html>
